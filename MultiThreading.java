@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * MultiThreading
  * allowing multiple tasks to run simultaneously and independently.
  */
-class Book extends Thread { 
+class Book implements Runnable { //Multiple inheritance is not allowed in Java; therefore, we use the Runnable interface.
 
     public void run() { //run
         for (int i = 1; i <= 5; i++) {
@@ -45,28 +45,22 @@ public class MultiThreading {
     public static void main(String[] args) throws InterruptedException { //thread
         
         //creating object for the class
-        Book book = new Book(); // book - thread
+        Runnable book = new Book(); // book - thread
         Num num = new Num();
         
 //        book.updateDb();
-        book.start(); //run
+       Thread t1 =new Thread(book);
+       t1.start();
         
 //        num.print();
         num.start();
         
-        //Check if thread is executing or not
-        if(book.isAlive()){
-            System.out.println("Book Tread Still Excuting");
-        }
         
-        // Make main thread wait for completion of book & num thread
-        book.join(); 
+        
+        
         num.join();
         
-        //Check if thread is executing or not
-        if(book.isAlive()){
-            System.out.println("Still Excuting");
-        }
+        
         
         System.out.println("Bye");
     }
