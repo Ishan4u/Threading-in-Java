@@ -26,9 +26,9 @@ class Book extends Thread {
     
 }
 
-class Num {
+class Num extends Thread{
 
-    void print() {
+    public void run() {
         for (int i = 1; i <= 5; i++) {
             System.out.println(i);
             try {
@@ -49,9 +49,11 @@ public class MultiThreading {
         Num num = new Num();
         
 //        book.updateDb();
-        book.start();
+        book.start(); //run
         
-        num.print();
+//        num.print();
+        num.start();
         
+        System.out.println("Bye");
     }
 }
