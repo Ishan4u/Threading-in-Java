@@ -48,8 +48,10 @@ public class MultiThreading {
 
 //        book.updateDb();
         Thread t1 = new Thread(book); // instance of thread for book
+        t1.setName("book1");
+        System.out.println(t1.getName());
+        
         t1.start();
-
 //        num.print();
         num.start();
         
