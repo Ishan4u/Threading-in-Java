@@ -30,9 +30,9 @@ public class MultiThreading {
     public static void main(String[] args) throws InterruptedException { //thread
 
         //creating object for the class
-        Runnable book = new Runnable() 
-        { // anonymous class for book
-            public void run() { //run
+        Runnable book = () ->
+        { // anonymous class for book; lamda expression
+            
                 for (int i = 1; i <= 5; i++) {
                     System.out.println("Updating Db");
                     try {
@@ -41,7 +41,7 @@ public class MultiThreading {
                         ex.printStackTrace();
                     }
                 }
-            }
+            
         };
 
         Num num = new Num();
