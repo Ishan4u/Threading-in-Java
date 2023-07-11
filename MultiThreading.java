@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * MultiThreading
  * allowing multiple tasks to run simultaneously and independently.
  */
-class Book extends Thread {
+class Book extends Thread { 
 
     public void run() { //run
         for (int i = 1; i <= 5; i++) {
@@ -42,7 +42,7 @@ class Num extends Thread{
 
 public class MultiThreading {
 
-    public static void main(String[] args) { //thread
+    public static void main(String[] args) throws InterruptedException { //thread
         
         //creating object for the class
         Book book = new Book(); // book - thread
@@ -53,6 +53,20 @@ public class MultiThreading {
         
 //        num.print();
         num.start();
+        
+        //Check if thread is executing or not
+        if(book.isAlive()){
+            System.out.println("Book Tread Still Excuting");
+        }
+        
+        // Make main thread wait for completion of book & num thread
+        book.join(); 
+        num.join();
+        
+        //Check if thread is executing or not
+        if(book.isAlive()){
+            System.out.println("Still Excuting");
+        }
         
         System.out.println("Bye");
     }
