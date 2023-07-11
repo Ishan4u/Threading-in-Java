@@ -3,15 +3,24 @@
  */
 package multithreading;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * MultiThreading
+ * allowing multiple tasks to run simultaneously and independently.
  */
-class Book {
+class Book extends Thread {
 
-    void updateDb() {
+    public void run() { //run
         for (int i = 1; i <= 5; i++) {
-            System.out.println("Updating Db");
+            System.out.println("Updating Db"); 
+            try {
+                Thread.sleep(4000); //Introduced delay to pause execution for a specified duration
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
         }
     }
     
@@ -22,6 +31,11 @@ class Num {
     void print() {
         for (int i = 1; i <= 5; i++) {
             System.out.println(i);
+            try {
+                Thread.sleep(2000); //Introduced delay to pause execution for a specified duration
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }
@@ -31,10 +45,12 @@ public class MultiThreading {
     public static void main(String[] args) { //thread
         
         //creating object for the class
-        Book book = new Book();
+        Book book = new Book(); // book - thread
         Num num = new Num();
         
-        book.updateDb();
+//        book.updateDb();
+        book.start();
+        
         num.print();
         
     }
